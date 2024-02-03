@@ -1,0 +1,35 @@
+{
+    "name": "Training_siq",
+    "n_gpu": 4,
+
+    "model": {
+        "type": "roberta-large",
+        "args": {}
+    },
+    "data_loader": {
+        "type": "MultiChoiceDataLoader",
+        "args":{
+            "batch_size": 16,
+            "shuffle": true,
+            "validation_split": 0.2,
+            "num_workers": 4
+        }
+    },
+    "optimizer": {
+        "type": "AdamW",
+        "args":{
+            "lr": 5e-6
+        }
+    },
+    "loss": "cross_entropy_loss",
+    "lr_scheduler": {
+        "type": "get_linear_schedule_with_warmup",
+        "args": {
+            "num_warmup_steps": 0
+        }
+    },
+    "trainer": {
+        "epochs": 10,
+        "accum_steps":1
+    }
+}
